@@ -104,7 +104,7 @@ if __name__ == "__main__":
                                                   seed=1,
                                                   train=False),
                                         batch_size=1,
-                                        shuffle=True)
+                                        shuffle=False)
 
     len_bag_list_train = []
     mnist_bags_train = 0
