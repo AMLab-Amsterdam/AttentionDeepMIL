@@ -26,6 +26,8 @@ In order to have a small and concise experimental setup, the code has the follow
 + Mean bag length parameter shouldn't be much larger than 10, for larger numbers the training dataset will become unbalanced very quickly. You can run the data loader on its own to check, see __main__ part of dataloader.py
 + No validation set is used during training, no early stopping
 
+In order to run experiments on the histopathology datasets, please download datasets [Breast Cancer](http://bioimage.ucsb.edu/research/bio-segmentation) and [Colon Cancer](https://warwick.ac.uk/fac/sci/dcs/research/tia/data/crchistolabelednucleihe/). In the histopathology experiments we used a similar model to the model in `model.py`, please see the [paper](https://arxiv.org/pdf/1802.04712.pdf) for details.
+
 
 How to Use
 ----------
