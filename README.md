@@ -1,18 +1,21 @@
 Attention-based Deep Multiple Instance Learning
 ================================================
 
-by Maximilian Ilse (<ilse.maximilian@gmail.com>) and Jakub M. Tomczak (<jakubmkt@gmail.com>), add Max Welling
+by Maximilian Ilse (<ilse.maximilian@gmail.com>) and Jakub M. Tomczak (<jakubmkt@gmail.com>), and Max Welling
 
 Overview
 --------
 
-PyTorch implementation of our paper "Attention-based Deep Multiple Instance Learning", see <https://arxiv.org/pdf/1802.04712.pdf>.
+PyTorch implementation of our paper "Attention-based Deep Multiple Instance Learning":
+* Ilse, M., Tomczak, J. M., & Welling, M. (2018). Attention-based Deep Multiple Instance Learning. arXiv preprint arXiv:1802.04712. [link](https://arxiv.org/pdf/1802.04712.pdf).
 
 
 Installation
 ------------
 
-Installing Pytorch 0.3.1, using pip or conda, should resolve all dependencies. Tested with Python 2.7, but should work with 3.x as well. CPU, GPU anything goes.
+Installing Pytorch 0.3.1, using pip or conda, should resolve all dependencies.
+Tested with Python 2.7, but should work with 3.x as well.
+Tested on both CPU and GPU.
 
 
 Content
