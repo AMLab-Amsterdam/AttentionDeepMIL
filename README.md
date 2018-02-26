@@ -1,12 +1,12 @@
 Attention-based Deep Multiple Instance Learning
 ================================================
 
-by Maximilian Ilse (<ilse.maximilian@gmail.com>) and Jakub M. Tomczak (<jakubmkt@gmail.com >), add Max???
+by Maximilian Ilse (<ilse.maximilian@gmail.com>) and Jakub M. Tomczak (<jakubmkt@gmail.com>), add Max Welling
 
 Overview
 --------
 
-PyTorch implementation of our proposed Attention-based Multiple Instance Learning (MIL) architecture, see <https://arxiv.org/pdf/1802.04712.pdf>.
+PyTorch implementation of our paper "Attention-based Deep Multiple Instance Learning", see <https://arxiv.org/pdf/1802.04712.pdf>.
 
 
 Installation
@@ -39,6 +39,25 @@ The objective function is the negative log-likelihood of the Bernoulli distribut
 
 
 Questions and Issues
+--------------------
+
+If you find any bugs or have any questions about this code please contact ???. We cannot guarantee any support for
+this software.
+
+Citation
+--------------------
+
+Please cite our paper if you use this code in your research:
+```
+@article{ilse2018attention,
+  title={Attention-based Deep Multiple Instance Learning},
+  author={Ilse, Maximilian and Tomczak, Jakub M and Welling, Max},
+  journal={arXiv preprint arXiv:1802.04712},
+  year={2018}
+}
+```
+
+Acknowledgments
 --------------------
 
 If you find any bugs or have any questions about this code please contact ???. We cannot guarantee any support for
