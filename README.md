@@ -18,7 +18,7 @@ Installing Pytorch 0.3.1, using pip or conda, should resolve all dependencies. T
 Content
 --------
 
-The code can be used to run the MNIST-BAGS experiment, see Section 4.2 and Figure 1 in <https://arxiv.org/pdf/1802.04712.pdf>.
+The code can be used to run the MNIST-BAGS experiment, see Section 4.2 and Figure 1 in our [paper](https://arxiv.org/pdf/1802.04712.pdf).
 In order to have a small and concise experimental setup, the code has the following limitation:
 + Mean bag length parameter shouldn't be much larger than 10, for larger numbers the training dataset will become unbalanced very quickly. You can run the data loader on its own to check, see __main__ part of dataloader.py
 + No validation set is used during training, no early stopping
