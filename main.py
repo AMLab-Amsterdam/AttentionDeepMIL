@@ -97,7 +97,7 @@ def train(epoch):
     train_loss /= len(train_loader)
     train_error /= len(train_loader)
 
-    print('Epoch: {}, Loss: {:.4f}, Accuracy: {:.4f}'.format(epoch, train_loss.cpu().numpy()[0], train_error))
+    print('Epoch: {}, Loss: {:.4f}, Train error: {:.4f}'.format(epoch, train_loss.cpu().numpy()[0], train_error))
 
 
 def test():
@@ -126,7 +126,7 @@ def test():
     test_error /= len(test_loader)
     test_loss /= len(test_loader)
 
-    print('\nTest Set, Loss: {:.4f}, Accuracy: {:.4f}'.format(test_loss.cpu().numpy()[0], test_error))
+    print('\nTest Set, Loss: {:.4f}, Test error: {:.4f}'.format(test_loss.cpu().numpy()[0], test_error))
 
 
 if __name__ == "__main__":
