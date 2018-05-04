@@ -117,8 +117,8 @@ def test():
 
         if batch_idx < 5:  # plot bag labels and instance labels for first 5 bags
             bag_level = (bag_label.cpu().data.numpy()[0], int(predicted_label.cpu().data.numpy()[0][0]))
-            instance_level = zip(instance_labels.numpy()[0].tolist(),
-                                 np.round(attention_weights.cpu().data.numpy()[0], decimals=3).tolist())
+            instance_level = list(zip(instance_labels.numpy()[0].tolist(),
+                                 np.round(attention_weights.cpu().data.numpy()[0], decimals=3).tolist()))
 
             print('\nTrue Bag Label, Predicted Bag Label: {}\n'
                   'True Instance Labels, Attention Weights: {}'.format(bag_level, instance_level))
