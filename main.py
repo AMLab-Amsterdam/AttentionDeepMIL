@@ -43,7 +43,7 @@ if args.cuda:
     print('\nGPU is ON!')
 
 print('Load Train and Test Set')
-kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
+loader_kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
 
 train_loader = data_utils.DataLoader(MnistBags(target_number=args.target_number,
                                                mean_bag_length=args.mean_bag_length,
@@ -52,7 +52,8 @@ train_loader = data_utils.DataLoader(MnistBags(target_number=args.target_number,
                                                seed=args.seed,
                                                train=True),
                                      batch_size=1,
-                                     shuffle=True)
+                                     shuffle=True,
+                                     **loader_kwargs)
 
 test_loader = data_utils.DataLoader(MnistBags(target_number=args.target_number,
                                               mean_bag_length=args.mean_bag_length,
@@ -61,7 +62,8 @@ test_loader = data_utils.DataLoader(MnistBags(target_number=args.target_number,
                                               seed=args.seed,
                                               train=False),
                                     batch_size=1,
-                                    shuffle=False)
+                                    shuffle=False,
+                                    **loader_kwargs)
 
 print('Init Model')
 model = Attention()
