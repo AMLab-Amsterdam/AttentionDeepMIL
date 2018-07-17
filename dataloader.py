@@ -62,7 +62,7 @@ class MnistBags(data_utils.Dataset):
                 indices = torch.LongTensor(self.r.randint(0, self.num_in_test, bag_length))
 
             labels_in_bag = all_labels[indices]
-            labels_in_bag = labels_in_bag >= self.target_number
+            labels_in_bag = labels_in_bag == self.target_number
 
             bags_list.append(all_imgs[indices])
             labels_list.append(labels_in_bag)
