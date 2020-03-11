@@ -1,7 +1,7 @@
 Attention-based Deep Multiple Instance Learning
 ================================================
 
-by Maximilian Ilse (<ilse.maximilian@gmail.com>) and Jakub M. Tomczak (<jakubmkt@gmail.com>)
+by Maximilian Ilse (<ilse.maximilian@gmail.com>), Jakub M. Tomczak (<jakubmkt@gmail.com>) and Max Welling
 
 Overview
 --------
