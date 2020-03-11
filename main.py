@@ -33,6 +33,7 @@ parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='disables CUDA training')
+parser.add_argument('--model', type=str, default='attention', help='Choose b/w attention and gated_attention')
 
 args = parser.parse_args()
 args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -66,7 +67,10 @@ test_loader = data_utils.DataLoader(MnistBags(target_number=args.target_number,
                                     **loader_kwargs)
 
 print('Init Model')
-model = Attention()
+if args.model=='attention':
+    model = Attention()
+elif args.model=='gated_attention':
+    model = GatedAttention()
 if args.cuda:
     model.cuda()
 
