@@ -9,7 +9,7 @@ import torch.optim as optim
 from torch.autograd import Variable
 
 from dataloader import MnistBags
-from model import Attention
+from model import Attention, GatedAttention
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MNIST bags Example')
