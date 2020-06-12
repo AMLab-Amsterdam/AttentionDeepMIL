@@ -125,20 +125,20 @@ class GatedAttention(nn.Module):
         Y_prob = self.classifier(M)
         Y_hat = torch.ge(Y_prob, 0.5).float()
 
-        return Y_prob, A
+        return Y_prob, Y_hat, A
 
     # AUXILIARY METHODS
     def calculate_classification_error(self, X, Y):
         Y = Y.float()
         _, Y_hat, _ = self.forward(X)
         error = 1. - Y_hat.eq(Y).cpu().float().mean().item()
-    
+
         return error, Y_hat
-    
+
     def calculate_objective(self, X, Y):
         Y = Y.float()
         Y_prob, _, A = self.forward(X)
         Y_prob = torch.clamp(Y_prob, min=1e-5, max=1. - 1e-5)
         neg_log_likelihood = -1. * (Y * torch.log(Y_prob) + (1. - Y) * torch.log(1. - Y_prob))  # negative log bernoulli
-    
+
         return neg_log_likelihood, A
