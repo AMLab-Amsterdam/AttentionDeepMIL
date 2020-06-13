@@ -37,7 +37,7 @@ If run as main, it computes the ratio of positive bags as well as the mean, max 
 `mnist_bags_loader.py`: Added the original data loader we used in the experiments. It can handle any bag length without the dataset becoming unbalanced. It is most probably not the most efficient way to create the bags. Furthermore it is only test for the case that the target number is ‘9’.
 
 `main.py`: Trains a small CNN with the Adam optimization algorithm.
-The training takes 20 epoches. Last, the accuracy and loss of the model on the test set is computed.
+The training takes 20 epochs. Last, the accuracy and loss of the model on the test set is computed.
 In addition, a subset of the bags labels and instance labels are printed.
 
 `model.py`: The model is a modified LeNet-5, see <http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf>.

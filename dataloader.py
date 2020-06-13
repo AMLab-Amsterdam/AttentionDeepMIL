@@ -114,7 +114,7 @@ if __name__ == "__main__":
     print('Number positive train bags: {}/{}\n'
           'Number of instances per bag, mean: {}, max: {}, min {}\n'.format(
         mnist_bags_train, len(train_loader),
-        np.mean(len_bag_list_train), np.min(len_bag_list_train), np.max(len_bag_list_train)))
+        np.mean(len_bag_list_train), np.max(len_bag_list_train), np.min(len_bag_list_train)))
 
     len_bag_list_test = []
     mnist_bags_test = 0
@@ -124,4 +124,4 @@ if __name__ == "__main__":
     print('Number positive test bags: {}/{}\n'
           'Number of instances per bag, mean: {}, max: {}, min {}\n'.format(
         mnist_bags_test, len(test_loader),
-        np.mean(len_bag_list_test), np.min(len_bag_list_test), np.max(len_bag_list_test)))
+        np.mean(len_bag_list_test), np.max(len_bag_list_test), np.min(len_bag_list_test)))
