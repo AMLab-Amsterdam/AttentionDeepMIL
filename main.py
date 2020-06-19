@@ -14,9 +14,9 @@ from model import Attention, GatedAttention
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MNIST bags Example')
 parser.add_argument('--epochs', type=int, default=20, metavar='N',
-                    help='number of epochs to train (default: 10)')
+                    help='number of epochs to train (default: 20)')
 parser.add_argument('--lr', type=float, default=0.0005, metavar='LR',
-                    help='learning rate (default: 0.01)')
+                    help='learning rate (default: 0.0005)')
 parser.add_argument('--reg', type=float, default=10e-5, metavar='R',
                     help='weight decay')
 parser.add_argument('--target_number', type=int, default=9, metavar='T',
