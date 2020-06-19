@@ -63,7 +63,7 @@ Please cite our paper if you use this code in your research:
 }
 ```
 
-Acknowledgements
+Acknowledgments
 --------------------
 
 The work conducted by Maximilian Ilse was funded by the Nederlandse Organisatie voor Wetenschappelijk Onderzoek (Grant DLMedIa: Deep Learning for Medical Image Analysis).
