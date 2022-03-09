@@ -57,7 +57,7 @@ class Attention(nn.Module):
     def calculate_classification_error(self, X, Y):
         Y = Y.float()
         _, Y_hat, _ = self.forward(X)
-        error = 1. - Y_hat.eq(Y).cpu().float().mean().data[0]
+        error = 1. - Y_hat.eq(Y).cpu().float().mean().data.item()
 
         return error, Y_hat
 
