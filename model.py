@@ -25,9 +25,9 @@ class Attention(nn.Module):
         )
 
         self.attention = nn.Sequential(
-            nn.Linear(self.M, self.L),
+            nn.Linear(self.M, self.L), # matrix V
             nn.Tanh(),
-            nn.Linear(self.L, self.ATTENTION_OUT)
+            nn.Linear(self.L, self.ATTENTION_OUT) # vector w
         )
 
         self.classifier = nn.Sequential(
@@ -91,16 +91,16 @@ class GatedAttention(nn.Module):
         )
 
         self.attention_V = nn.Sequential(
-            nn.Linear(self.M, self.L),
+            nn.Linear(self.M, self.L), # matrix V
             nn.Tanh()
         )
 
         self.attention_U = nn.Sequential(
-            nn.Linear(self.M, self.L),
+            nn.Linear(self.M, self.L), # # matrix U
             nn.Sigmoid()
         )
 
-        self.attention_w = nn.Linear(self.L, self.ATTENTION_OUT)
+        self.attention_w = nn.Linear(self.L, self.ATTENTION_OUT) # vector w
 
         self.classifier = nn.Sequential(
             nn.Linear(self.M*self.ATTENTION_OUT, 1),
