@@ -6,9 +6,9 @@ import torch.nn.functional as F
 class Attention(nn.Module):
     def __init__(self):
         super(Attention, self).__init__()
-        self.L = 500
-        self.D = 128
-        self.K = 1
+        self.M = 500
+        self.L = 128
+        self.ATTENTION_OUT = 1
 
         self.feature_extractor_part1 = nn.Sequential(
             nn.Conv2d(1, 20, kernel_size=5),
@@ -20,18 +20,18 @@ class Attention(nn.Module):
         )
 
         self.feature_extractor_part2 = nn.Sequential(
-            nn.Linear(50 * 4 * 4, self.L),
+            nn.Linear(50 * 4 * 4, self.M),
             nn.ReLU(),
         )
 
         self.attention = nn.Sequential(
-            nn.Linear(self.L, self.D),
+            nn.Linear(self.M, self.L),
             nn.Tanh(),
-            nn.Linear(self.D, self.K)
+            nn.Linear(self.L, self.ATTENTION_OUT)
         )
 
         self.classifier = nn.Sequential(
-            nn.Linear(self.L*self.K, 1),
+            nn.Linear(self.M*self.ATTENTION_OUT, 1),
             nn.Sigmoid()
         )
 
@@ -40,15 +40,15 @@ class Attention(nn.Module):
 
         H = self.feature_extractor_part1(x)
         H = H.view(-1, 50 * 4 * 4)
-        H = self.feature_extractor_part2(H)  # NxL
+        H = self.feature_extractor_part2(H)  # KxM
 
-        A = self.attention(H)  # NxK
-        A = torch.transpose(A, 1, 0)  # KxN
-        A = F.softmax(A, dim=1)  # softmax over N
+        A = self.attention(H)  # KxATTENTION_OUT
+        A = torch.transpose(A, 1, 0)  # ATTENTION_OUTxK
+        A = F.softmax(A, dim=1)  # softmax over K
 
-        M = torch.mm(A, H)  # KxL
+        Z = torch.mm(A, H)  # ATTENTION_OUTxM
 
-        Y_prob = self.classifier(M)
+        Y_prob = self.classifier(Z)
         Y_hat = torch.ge(Y_prob, 0.5).float()
 
         return Y_prob, Y_hat, A
@@ -72,9 +72,9 @@ class Attention(nn.Module):
 class GatedAttention(nn.Module):
     def __init__(self):
         super(GatedAttention, self).__init__()
-        self.L = 500
-        self.D = 128
-        self.K = 1
+        self.M = 500
+        self.L = 128
+        self.ATTENTION_OUT = 1
 
         self.feature_extractor_part1 = nn.Sequential(
             nn.Conv2d(1, 20, kernel_size=5),
@@ -86,24 +86,24 @@ class GatedAttention(nn.Module):
         )
 
         self.feature_extractor_part2 = nn.Sequential(
-            nn.Linear(50 * 4 * 4, self.L),
+            nn.Linear(50 * 4 * 4, self.M),
             nn.ReLU(),
         )
 
         self.attention_V = nn.Sequential(
-            nn.Linear(self.L, self.D),
+            nn.Linear(self.M, self.L),
             nn.Tanh()
         )
 
         self.attention_U = nn.Sequential(
-            nn.Linear(self.L, self.D),
+            nn.Linear(self.M, self.L),
             nn.Sigmoid()
         )
 
-        self.attention_weights = nn.Linear(self.D, self.K)
+        self.attention_w = nn.Linear(self.L, self.ATTENTION_OUT)
 
         self.classifier = nn.Sequential(
-            nn.Linear(self.L*self.K, 1),
+            nn.Linear(self.M*self.ATTENTION_OUT, 1),
             nn.Sigmoid()
         )
 
@@ -112,17 +112,17 @@ class GatedAttention(nn.Module):
 
         H = self.feature_extractor_part1(x)
         H = H.view(-1, 50 * 4 * 4)
-        H = self.feature_extractor_part2(H)  # NxL
+        H = self.feature_extractor_part2(H)  # KxM
 
-        A_V = self.attention_V(H)  # NxD
-        A_U = self.attention_U(H)  # NxD
-        A = self.attention_weights(A_V * A_U) # element wise multiplication # NxK
-        A = torch.transpose(A, 1, 0)  # KxN
-        A = F.softmax(A, dim=1)  # softmax over N
+        A_V = self.attention_V(H)  # KxL
+        A_U = self.attention_U(H)  # KxL
+        A = self.attention_w(A_V * A_U) # element wise multiplication # KxATTENTION_OUT
+        A = torch.transpose(A, 1, 0)  # ATTENTION_OUTxK
+        A = F.softmax(A, dim=1)  # softmax over K
 
-        M = torch.mm(A, H)  # KxL
+        Z = torch.mm(A, H)  # ATTENTION_OUTxM
 
-        Y_prob = self.classifier(M)
+        Y_prob = self.classifier(Z)
         Y_hat = torch.ge(Y_prob, 0.5).float()
 
         return Y_prob, Y_hat, A
