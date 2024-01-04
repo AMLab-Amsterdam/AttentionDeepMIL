@@ -1,7 +1,6 @@
 """Pytorch Dataset object that loads perfectly balanced MNIST dataset in bag form."""
 
 import numpy as np
-import matplotlib.pyplot as plt
 import torch
 import torch.utils.data as data_utils
 from torchvision import datasets, transforms
@@ -47,7 +46,7 @@ class MnistBags(data_utils.Dataset):
                 labels = batch_data[1]
 
             while valid_bags_counter < self.num_bag:
-                bag_length = np.int(self.r.normal(self.mean_bag_length, self.var_bag_length, 1))
+                bag_length = int(self.r.normal(self.mean_bag_length, self.var_bag_length, 1))
                 if bag_length < 1:
                     bag_length = 1
                 indices = torch.LongTensor(self.r.randint(0, self.num_in_train, bag_length))
@@ -99,7 +98,7 @@ class MnistBags(data_utils.Dataset):
                 labels = batch_data[1]
 
             while valid_bags_counter < self.num_bag:
-                bag_length = np.int(self.r.normal(self.mean_bag_length, self.var_bag_length, 1))
+                bag_length = int(self.r.normal(self.mean_bag_length, self.var_bag_length, 1))
                 if bag_length < 1:
                     bag_length = 1
                 indices = torch.LongTensor(self.r.randint(0, self.num_in_test, bag_length))
