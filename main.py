@@ -1,11 +1,11 @@
 from __future__ import print_function
 
-import numpy as np
-
 import argparse
+
+import numpy as np
 import torch
-import torch.utils.data as data_utils
 import torch.optim as optim
+import torch.utils.data as data_utils
 from torch.autograd import Variable
 
 from dataloader import MnistBags
@@ -110,24 +110,26 @@ def test():
     model.eval()
     test_loss = 0.
     test_error = 0.
-    for batch_idx, (data, label) in enumerate(test_loader):
-        bag_label = label[0]
-        instance_labels = label[1]
-        if args.cuda:
-            data, bag_label = data.cuda(), bag_label.cuda()
-        data, bag_label = Variable(data), Variable(bag_label)
-        loss, attention_weights = model.calculate_objective(data, bag_label)
-        test_loss += loss.data[0]
-        error, predicted_label = model.calculate_classification_error(data, bag_label)
-        test_error += error
+    
+    with torch.no_grad():
+        for batch_idx, (data, label) in enumerate(test_loader):
+            bag_label = label[0]
+            instance_labels = label[1]
+            if args.cuda:
+                data, bag_label = data.cuda(), bag_label.cuda()
+            data, bag_label = Variable(data), Variable(bag_label)
+            loss, attention_weights = model.calculate_objective(data, bag_label)
+            test_loss += loss.data[0]
+            error, predicted_label = model.calculate_classification_error(data, bag_label)
+            test_error += error
 
-        if batch_idx < 5:  # plot bag labels and instance labels for first 5 bags
-            bag_level = (bag_label.cpu().data.numpy()[0], int(predicted_label.cpu().data.numpy()[0][0]))
-            instance_level = list(zip(instance_labels.numpy()[0].tolist(),
-                                 np.round(attention_weights.cpu().data.numpy()[0], decimals=3).tolist()))
+            if batch_idx < 5:  # plot bag labels and instance labels for first 5 bags
+                bag_level = (bag_label.cpu().data.numpy()[0], int(predicted_label.cpu().data.numpy()[0][0]))
+                instance_level = list(zip(instance_labels.numpy()[0].tolist(),
+                                    np.round(attention_weights.cpu().data.numpy()[0], decimals=3).tolist()))
 
-            print('\nTrue Bag Label, Predicted Bag Label: {}\n'
-                  'True Instance Labels, Attention Weights: {}'.format(bag_level, instance_level))
+                print('\nTrue Bag Label, Predicted Bag Label: {}\n'
+                    'True Instance Labels, Attention Weights: {}'.format(bag_level, instance_level))
 
     test_error /= len(test_loader)
     test_loss /= len(test_loader)
