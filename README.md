@@ -1,7 +1,9 @@
 Attention-based Deep Multiple Instance Learning
 ================================================
 
-by Maximilian Ilse (<ilse.maximilian@gmail.com>), Jakub M. Tomczak (<jakubmkt@gmail.com>) and Max Welling
+by [Maximilian Ilse](ilse.maximilian@gmail.com), [Jakub M. Tomczak](jakubmkt@gmail.com) and Max Welling
+
+[![CI Testing](https://github.com/Borda/AttentionDeepMIL/actions/workflows/ci-tests.yml/badge.svg?event=push)](https://github.com/Borda/AttentionDeepMIL/actions/workflows/ci-tests.yml)
 
 Overview
 --------

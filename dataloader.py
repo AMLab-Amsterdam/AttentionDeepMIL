@@ -52,7 +52,7 @@ class MnistBags(data_utils.Dataset):
         labels_list = []
 
         for i in range(self.num_bag):
-            bag_length = np.int(self.r.normal(self.mean_bag_length, self.var_bag_length, 1))
+            bag_length = int(self.r.normal(self.mean_bag_length, self.var_bag_length, 1))
             if bag_length < 1:
                 bag_length = 1
 
